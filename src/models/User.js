@@ -10,7 +10,7 @@ User.init(
         email:{
             type: DataTypes.STRING
         },
-        passwaord:{
+        password:{
             type: DataTypes.STRING
         }
     },{

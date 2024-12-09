@@ -3,15 +3,19 @@ const bcrypt = require('bcrypt');
 const { generateToken } = require('../utils/jwt');
 
 const login = async (req, res) => {
-    const { email, password } = req.body;
+    const { email } = req.body;
     try {
         const user = await User.findOne({ where: { email } });
+        console.log(user)
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        if (user.password !== password) {
+
+        const password = bcrypt.compareSync(req.body.password, user.password)
+        if (!password) {
             return res.status(401).json({ message: 'Invalid password' });
         }
+
         const token = generateToken(user);
         res.json({ token });
     } catch (error) {
