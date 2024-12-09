@@ -35,3 +35,6 @@ app.listen(PORT, function () {
       console.error("Unable to connect to the database:", error);
     });
 });
+
+//rutas
+app.use(require('../src/routers/auth'))
