@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../database/db");
 const User = require("./User");
+const Store = require("./Store");
 
 class Review extends Model {}
 Review.init(
@@ -25,7 +26,7 @@ Review.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: "stores", // Nombre de la tabla relacionada
+                model: Store, // Nombre de la tabla relacionada
                 key: "id", // Columna en la tabla relacionada
             },
             validate: {
