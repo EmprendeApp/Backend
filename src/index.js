@@ -6,7 +6,7 @@ const Inventory = require("./models/Inventory");
 const Order = require("./models/Order");
 const OrderDetail = require("./models/OrderDetail");
 const Product = require("./models/Product");
-
+const routes = require("./routers"); 
 
 const app = express();
 
@@ -37,4 +37,4 @@ app.listen(PORT, function () {
 });
 
 //rutas
-app.use(require('../src/routers/auth'))
+app.use("/api/v1", routes);
