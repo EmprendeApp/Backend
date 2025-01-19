@@ -4,7 +4,8 @@ const generateToken = (user) => {
     const payload = {
         id: user.id,
         name: user.name,
-        email: user.email
+        email: user.email,
+        role: user.role
     };
 
     const options = {
@@ -14,4 +15,5 @@ const generateToken = (user) => {
     const token = jwt.sign(payload, process.env.SECRET_KEY, options);
     return token;
 };
+
 module.exports = { generateToken };

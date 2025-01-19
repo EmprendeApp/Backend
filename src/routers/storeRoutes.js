@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-
+const { authenticate, authorize } = require('../utils/authenticate');
 const storesController = require("../controller/storesController");
 
 router.get("/stores", storesController.getAllStores);
 router.get("/stores/:id", storesController.getStoreById);
-router.post("/stores", storesController.createStore);   
+router.post("/stores", authenticate(['vendedor']), storesController.createStore);
 router.put("/stores/:id", storesController.updateStore);
 router.delete("/stores/:id", storesController.deleteStore);
 
