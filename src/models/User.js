@@ -12,6 +12,10 @@ User.init(
         },
         password:{
             type: DataTypes.STRING
+        },
+        role: {
+            type: DataTypes.ENUM('vendedor', 'comprador'),
+            allowNull: false
         }
     },{
         sequelize,

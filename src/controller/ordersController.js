@@ -30,8 +30,9 @@ const getOrderById = async (req, res) => {
 }
 
 const createOrder = async (req, res) => {
-    const { order_date, status, user_id } = req.body;
+    const { order_date, status} = req.body;
     try {
+        const user_id = req.user.id;
         const user = await User.findByPk(user_id)
         if(!user){
             return res.status(400).json({ message: "El user_id proporcionado no existe", status: 0 });

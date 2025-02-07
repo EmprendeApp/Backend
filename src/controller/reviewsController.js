@@ -31,8 +31,9 @@ const getReviewById = async (req, res) => {
 }
 
 const createReview = async (req, res) => {
-    const { rating, comment, date,  store_id, user_id } = req.body;
+    const { rating, comment, date,  store_id } = req.body;
     try {
+        const user_id = req.user.id;
         const user = await User.findByPk(user_id);
         if(!user){
             return res.status(400).json({ message: "El user_id proporcionado no existe", status: 0 });

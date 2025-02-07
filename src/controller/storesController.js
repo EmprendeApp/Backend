@@ -31,16 +31,10 @@ const getStoreById = async (req, res) => {
 
 
 const createStore = async (req, res) => {
-    const { store_name, description, user_id } = req.body;
+    const { store_name, description } = req.body;
 
     try {
-        const user = await User.findByPk(user_id);
-        if (!user) {
-            return res.status(400).json({ 
-                message: "El user_id proporcionado no existe", 
-                status: 0 
-            });
-        }
+        const user_id = req.user.id;
 
         const store = await Store.create({
             store_name,
@@ -55,12 +49,14 @@ const createStore = async (req, res) => {
         });
 
     } catch (error) {
+        console.error(error);
         return res.status(500).json({ 
             message: "Error del servidor", 
             status: 0 
         });
     }
 };
+
 
 
 const updateStore = async (req, res) => {
